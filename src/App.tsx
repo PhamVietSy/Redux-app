@@ -1,24 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
+import FormAddTodo from './pages/Components/From/FormAddTodo';
+import { AppDiv1, AppTitle } from './pages/Components/StyledComponents';
+import RenderTodoList from './pages/Components/TodoList/RenderTodoList';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <AppTitle>Todo App in ReactJS</AppTitle>
+      <AppDiv1>
+        <FormAddTodo/>
+        <RenderTodoList/>
+      </AppDiv1>
     </div>
   );
 }
