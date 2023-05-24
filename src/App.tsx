@@ -1,19 +1,30 @@
-
 import './App.css';
-import FormAddTodo from './pages/Components/From/FormAddTodo';
-import { AppDiv1, AppTitle } from './pages/Components/StyledComponents';
-import RenderTodoList from './pages/Components/TodoList/RenderTodoList';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { AuthRoutes } from './routes';
+import GlobaStyle from './config/Global.style';
 
 function App() {
-  return (
-    <div className="App">
-      <AppTitle>Todo App in ReactJS</AppTitle>
-      <AppDiv1>
-        <FormAddTodo/>
-        <RenderTodoList/>
-      </AppDiv1>
-    </div>
-  );
+    return (
+        <>
+            <GlobaStyle />
+            <Router>
+                <div className="App">
+                    <Routes>
+                        {AuthRoutes.map((route, index) => {
+                            const Page = route.element;
+                            return <Route key={index} path={route.path} element={<Page />} />;
+                        })}
+                    </Routes>
+                    {/* <Routes>
+                        {PublicRoutes.map((route, index) => {
+                            const Page = route.element;
+                            return <Route key={index} path={route.path} element={<Page />} />;
+                        })}
+                    </Routes> */}
+                </div>
+            </Router>
+        </>
+    );
 }
 
 export default App;

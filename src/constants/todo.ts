@@ -1,5 +1,3 @@
-import { Post } from "../types/Todo.type";
+import { Post } from '../types/Todo.type';
 
-export const initalTodoList: Post[] = [
-    
-]
+export const initalTodoList: Post[] = [];
