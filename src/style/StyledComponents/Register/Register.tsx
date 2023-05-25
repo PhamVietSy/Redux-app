@@ -17,6 +17,6 @@ export const WrapperRegister = styled.div`
     flex-direction: column;
     padding: 6px;
     width: 50vw;
-    height: 50vh;
+    height: 90vh;
     border-radius: 30px;
 `;

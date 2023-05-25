@@ -1,6 +1,6 @@
 import { ContainerLogin, WrapperLogin } from '../../style/StyledComponents/Login/Login';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input, message } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 
 function Login() {
@@ -16,10 +16,10 @@ function Login() {
                 localStorage.setItem('logedAcc', JSON.stringify({ email: values.email }));
                 navigate('/todoapp');
             } else {
-                alert('SAi');
+                message.error('Email or password is not correct');
             }
         } else {
-            alert('SAi');
+            message.error('Please register');
         }
     };
 

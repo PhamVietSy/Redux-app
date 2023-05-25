@@ -1,7 +1,7 @@
 import { ContainerRegister, WrapperRegister } from '../../style/StyledComponents/Register/Register';
-import { Button, Form, Input, Checkbox, Radio } from 'antd';
+import { Button, Form, Input, Checkbox, Radio, message } from 'antd';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const formItemLayout = {
     labelCol: {
@@ -35,21 +35,29 @@ interface IValues {
 }
 
 function Register() {
-    // const [accounts, setAccounts] = useState<string[]>([]);
     const navigate = useNavigate();
     const [form] = Form.useForm();
 
     const onFinish = (values: IValues) => {
-        console.log(values);
         let accounts = localStorage.getItem('accounts');
-        if (!accounts) {
-            localStorage.setItem('accounts', JSON.stringify([values]));
+        // @ts-ignore
+        const storage = JSON.parse(localStorage.getItem('accounts'));
+        const findAcc = storage?.find((item: any) => item.email === values.email);
+        console.log(findAcc);
+
+        if (findAcc) {
+            message.warning('Registered email please try another email ');
+            // alert('Registered email please try another email ');
         } else {
-            let arr = JSON.parse(accounts);
-            arr.push(values);
-            localStorage.setItem('accounts', JSON.stringify(arr));
+            if (!accounts) {
+                localStorage.setItem('accounts', JSON.stringify([values]));
+            } else {
+                let arr = JSON.parse(accounts);
+                arr.push(values);
+                localStorage.setItem('accounts', JSON.stringify(arr));
+            }
+            navigate('/login');
         }
-        navigate('/login');
     };
     const [disabled, setDisabled] = useState<boolean>(true);
     const handleClick = () => setDisabled(!disabled);
@@ -155,7 +163,17 @@ function Register() {
                     >
                         <Input />
                     </Form.Item>
-                    <Form.Item name="sex" label="Sex" required>
+                    <Form.Item
+                        name="sex"
+                        label="Sex"
+                        rules={[
+                            {
+                                required: true,
+                                message: 'Please choose sex',
+                                whitespace: true,
+                            },
+                        ]}
+                    >
                         <Radio.Group>
                             <Radio value="male">Male</Radio>
                             <Radio value="frmale">Frmale </Radio>
@@ -167,6 +185,7 @@ function Register() {
                             Register
                         </Button>
                     </Form.Item>
+                    <Link to="/login">I have account</Link>
                 </Form>
             </WrapperRegister>
         </ContainerRegister>

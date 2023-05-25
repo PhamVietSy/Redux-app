@@ -16,7 +16,7 @@ export const WrapperLogin = styled.div`
     align-items: center;
     flex-direction: column;
     padding: 6px;
-    width: 50vw;
-    height: 50vh;
+    width: 40vw;
+    height: 70vh;
     border-radius: 30px;
 `;

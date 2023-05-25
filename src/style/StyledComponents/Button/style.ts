@@ -4,28 +4,40 @@ import { ButtonType } from './Index';
 
 export const AppButton = styled.button`
     margin: 5px;
+    padding: 4px;
     border-radius: 4px;
     ${(props) =>
         props.type === ButtonType.DEFAULT &&
         css`
-            background-color: #7cf63a;
+            background-color: #4a96ff;
+            color: white;
         `};
     ${(props) =>
         props.type === ButtonType.EDIT &&
         css`
-            background-color: #2973d9;
+            background-color: coral;
             float: right;
+            color: white;
         `};
     ${(props) =>
         props.type === ButtonType.DELETE &&
         css`
-            background-color: #ff7373;
+            background-color: #e52525;
             margin-right: 20px;
             float: right;
+            color: white;
         `};
     ${(props) =>
         props.type === ButtonType.DONE &&
         css`
-            background-color: #fbe041c7;
+            background-color: #e52525;
+            color: white;
+        `};
+    ${(props) =>
+        props.type === ButtonType.LOGOUT &&
+        css`
+            color: white;
+            background-color: black;
+            float: right;
         `};
 `;

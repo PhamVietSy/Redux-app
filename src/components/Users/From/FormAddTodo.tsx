@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { message } from 'antd';
 import { Post } from '../../../types/Todo.type';
 import { RootState } from '../../../store';
 import { addPost, cancelEditing, deleteAll, editing } from '../../../context/Todo/Todo.reducer';
@@ -21,11 +22,16 @@ function FormAddTodo() {
 
     const handleAdd = () => {
         if (job.job === '') {
-            return alert('giá trị nhập vào không được để trống!');
+            return message.warning('Input value cannot be left blank!');
         }
+        //State
         const dataJob = { ...job, id: new Date().toISOString() };
         dispatch(addPost(dataJob));
         setJob(initalState);
+
+        //Local
+
+        //focus input
         if (inputRef.current) inputRef.current.focus();
     };
     const handleCancel = () => {
@@ -46,6 +52,7 @@ function FormAddTodo() {
                     <input
                         ref={inputRef}
                         value={job.job}
+                        placeholder="Add job"
                         onChange={(e) => setJob((prev) => ({ ...prev, job: e.target.value }))}
                     />
                 </AppDivBl>
